@@ -1,0 +1,13 @@
+wrapper {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  gap: 20px;
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px gray;
+}
+#links {
+  width: 100%;
+}

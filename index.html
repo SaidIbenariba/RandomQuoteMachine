@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script type="text/javascript">
+      window.onload = init;
+      const quotes = [
+        {
+          text: "Alone we can do so little; together we can do so much.",
+          author: "Helen Keller",
+        },
+        { text: "I restore myself when I'm alone.", author: "Marilyn Monroe" },
+        {
+          text: "Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to give the best to those who dream and work.",
+          author: "A. P. J. Abdul Kalam",
+        },
+      ];
+      function init() {
+        generateQuote();
+        document.getElementById("new-quote").addEventListener("click", () => {
+          generateQuote();
+          console.log("clicked");
+        });
+      }
+
+      function generateQuote() {
+        let randomIndex = Math.floor(Math.random() * quotes.length);
+        let randomQuote = quotes[randomIndex];
+        let twitterLink =
+          "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%20";
+        let quoteInApiFormat = randomQuote.text.replace(/ /g, "%20");
+        let authorInApiFormat = randomQuote.author.replace(/ /g, "%20");
+        twitterLink += quoteInApiFormat + "%20";
+        twitterLink += authorInApiFormat;
+        console.log(twitterLink);
+        document.getElementById("tweet-quote").href = twitterLink;
+        document.getElementById("text").textContent =
+          '"' + randomQuote.text + '"';
+        document.getElementById("author").textContent = randomQuote.author;
+        document.getElementById("author").style.fontWeight = "bold";
+      }
+    </script>
+  </head>
+  <body style="height: 100vh">
+    <h1 class="text-center">Random Quote Machine</h1>
+    <wrapper
+      id="quote-box"
+      class="center-block d-flex flex-column align-items-center bg-light mx-auto t-50 position-absolute"
+    >
+      <div id="text"></div>
+      <div id="author"></div>
+      <div class="row d-flex flex-row justify-content-around" id="links">
+        <a class="col twitter-share-button" target="_blank" id="tweet-quote">
+          <i class="fa-brands fa-square-x-twitter fa-xl"></i>
+        </a>
+        <div id="new-quote" class="col btn btn-primary">New Quote</div>
+      </div>
+      <p>by said ibenariba</p>
+    </wrapper>
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script
+      src="https://kit.fontawesome.com/7898725684.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
